@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars";
 import { useSelector } from "react-redux";
-import { rolesObj } from "../../utils/roles";
+import { admin, rolesObj } from "../../utils/roles";
 const Sidebar = (props) => {
   const role = useSelector((state) => state.auth.role);
 
@@ -30,7 +30,7 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar" id="sidebar">
       <Scrollbars autoHide autoHideTimeout={1000} autoHideDuration={200} autoHeight autoHeightMin={0} autoHeightMax="95vh" thumbMinSize={30} universal={false} hideTracksWhenNotNeeded={true}>
-        {role == "ADMIN" && (
+        {role == admin && (
           <div className="sidebar-inner slimscroll">
             <div id="sidebar-menu" className="sidebar-menu">
               <ul>

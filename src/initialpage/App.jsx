@@ -5,6 +5,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Error404 from "../MainPage/Pages/ErrorPage/error404";
 import Error500 from "../MainPage/Pages/ErrorPage/error500";
 import uicomponents from "../MainPage/UIinterface/components";
+import { admin } from "../utils/roles";
 import ApplyJobs from "./ApplyJob";
 import ForgotPassword from "./forgotpassword";
 import LockScreen from "./lockscreen";
@@ -29,38 +30,38 @@ import Tasklayout from "./Sidebar/tasklayout";
 //   }
 
 const App = () => {
-  const isAuthorized = useSelector((state) => state.auth.isAuthorized);
-  const role = useSelector((state) => state.auth.role);
+    const isAuthorized = useSelector((state) => state.auth.isAuthorized);
+    const role = useSelector((state) => state.auth.role);
 
-  return (
-    <Switch>
-      {isAuthorized ? (
-        <>
-          {role == "ADMIN" ? <Redirect path="/" exact to="/app/main/dashboard" /> : <Redirect path="/" exact to="/app/main/employee-dashboard" />}
+    return (
+        <Switch>
+            {isAuthorized ? (
+                <>
+                    {role == admin ? <Redirect path="/" exact to="/app/main/dashboard" /> : <Redirect path="/" exact to="/app/main/employee-dashboard" />}
 
-          <Route path="/app" component={DefaultLayout} />
-        </>
-      ) : (
-        <>
-          <Route path="/" component={LoginPage} />
-          <Route path="/forgotpassword" component={ForgotPassword} />
-          <Route path="/register" component={RegistrationPage} />
-          <Route path="/otp" component={OTP} />
-          <Route path="/lockscreen" component={LockScreen} />
-          <Route path="/applyjob" component={ApplyJobs} />
+                    <Route path="/app" component={DefaultLayout} />
+                </>
+            ) : (
+                <>
+                    <Route path="/" component={LoginPage} />
+                    <Route path="/forgotpassword" component={ForgotPassword} />
+                    <Route path="/register" component={RegistrationPage} />
+                    <Route path="/otp" component={OTP} />
+                    <Route path="/lockscreen" component={LockScreen} />
+                    <Route path="/applyjob" component={ApplyJobs} />
 
-          <Route path="/settings" component={Settinglayout} />
-          <Route path="/tasks" component={Tasklayout} />
-          <Route path="/email" component={Emaillayout} />
-          <Route path="/conversation" component={chatlayout} />
+                    <Route path="/settings" component={Settinglayout} />
+                    <Route path="/tasks" component={Tasklayout} />
+                    <Route path="/email" component={Emaillayout} />
+                    <Route path="/conversation" component={chatlayout} />
 
-          <Route path="/ui-components" component={uicomponents} />
-        </>
-      )}
+                    <Route path="/ui-components" component={uicomponents} />
+                </>
+            )}
 
-      <Route path="/error-404" component={Error404} />
-      <Route path="/error-500" component={Error500} />
-    </Switch>
-  );
+            <Route path="/error-404" component={Error404} />
+            <Route path="/error-500" component={Error500} />
+        </Switch>
+    );
 };
 export default App;

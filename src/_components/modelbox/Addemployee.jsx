@@ -25,6 +25,10 @@ const Addemployee = () => {
   const dispatch = useDispatch()
   const [teamLeadsArr, setTeamLeadsArr] = useState([]);
   const employees = useSelector(getAllEmployees)
+
+  const reduxrole = useSelector((state) => state.auth.role);
+  const userObj = useSelector((state) => state.auth.user);
+
   useEffect(() => {
     handleGetAllEmployees()
   }, [])
@@ -114,7 +118,7 @@ const Addemployee = () => {
   }
   const handleGetAllEmployees = async () => {
     try {
-      let { data: res } = await getEmployess()
+      let { data: res } = await getEmployess(userObj._id, reduxrole)
       if (res.success) {
         console.log(res, "res")
         dispatch(returnAllEmployees(res.data))

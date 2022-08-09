@@ -33,7 +33,8 @@ const Employeeslist = () => {
   const [employeeNameQuery, setEmployeeNameQuery] = useState("");
   const [employeeRoleQuery, setEmployeeRoleQuery] = useState("");
 
-
+  const role = useSelector((state) => state.auth.role);
+  const userObj = useSelector((state) => state.auth.user);
 
   const dispatch = useDispatch()
   const toggleMobileMenu = () => {
@@ -51,7 +52,7 @@ const Employeeslist = () => {
 
   const handleGetAllEmployees = async () => {
     try {
-      let { data: res } = await getEmployess()
+      let { data: res } = await getEmployess(userObj._id, role)
       if (res.success) {
         console.log(res, "res")
         dispatch(returnAllEmployees(res.data))
