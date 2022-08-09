@@ -30,14 +30,13 @@ import Tasklayout from "./Sidebar/tasklayout";
 
 const App = () => {
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
-
-  useEffect(() => {}, []);
+  const role = useSelector((state) => state.auth.role);
 
   return (
     <Switch>
       {isAuthorized ? (
         <>
-          <Redirect path="/" exact to="/app/main/dashboard" />
+          {role == "ADMIN" ? <Redirect path="/" exact to="/app/main/dashboard" /> : <Redirect path="/" exact to="/app/main/employee-dashboard" />}
 
           <Route path="/app" component={DefaultLayout} />
         </>

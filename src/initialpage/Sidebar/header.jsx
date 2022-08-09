@@ -6,7 +6,9 @@ import { Link, withRouter } from "react-router-dom";
 import { Avatar_02, Avatar_03, Avatar_06, Avatar_13, Avatar_17, Avatar_21, headerlogo } from "../../Entryfile/imagepath";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/features/auth/authSlice";
+import { useSelector } from "react-redux";
 const Header = (props) => {
+  const role = useSelector((state) => state.auth.role);
   const dispatch = useDispatch();
   const handlesidebar = () => {
     document.body.classList.toggle("mini-sidebar");
@@ -61,29 +63,7 @@ const Header = (props) => {
             </form>
           </div>
         </li>
-        {/* /Search */}
-        {/* Flag */}
-        {/* <li className="nav-item dropdown has-arrow flag-nav">
-          <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">
-            <img src={lnEnglish} alt="" height={20} /> <span>English</span>
-          </a>
-          <div className="dropdown-menu dropdown-menu-right">
-            <a href="" className="dropdown-item">
-              <img src={lnEnglish} alt="" height={16} /> English
-            </a>
-            <a href="" className="dropdown-item">
-              <img src={lnFrench} alt="" height={16} /> French
-            </a>
-            <a href="" className="dropdown-item">
-              <img src={lnSpanish} alt="" height={16} /> Spanish
-            </a>
-            <a href="" className="dropdown-item">
-              <img src={lnGerman} alt="" height={16} /> German
-            </a>
-          </div>
-        </li> */}
-        {/* /Flag */}
-        {/* Notifications */}
+
         <li className="nav-item dropdown">
           <a href="#" className="dropdown-toggle nav-link" data-bs-toggle="dropdown">
             <i className="fa fa-bell-o" /> <span className="badge badge-pill">3</span>
@@ -203,7 +183,7 @@ const Header = (props) => {
               <img src={Avatar_21} alt="" />
               <span className="status online" />
             </span>
-            <span>Admin</span>
+            <span>{role}</span>
           </a>
           <div className="dropdown-menu">
             <Link className="dropdown-item" to="/app/profile/employee-profile">
