@@ -2,39 +2,32 @@
  * Signin Firebase
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from 'react-router-dom';
-import { Applogo } from '../Entryfile/imagepath.jsx'
-import { useForm, Controller } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup';
-import { alphaNumericPattern, emailrgx } from '../constant'
+import { Link } from "react-router-dom";
+import { Applogo } from "../Entryfile/imagepath.jsx";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { alphaNumericPattern, emailrgx } from "../constant";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../redux/features/auth/authSlice.js";
 
-
-const schema = yup
-  .object({
-
-    email: yup
-      .string()
-      .matches(emailrgx, 'Email is required')
-      .required('Email is required')
-      .trim(),
-    password: yup.string().min(6)
-      .max(6).required('Password is required')
-      .trim(),
-  })
+const schema = yup.object({
+  email: yup.string().matches(emailrgx, "Email is required").required("Email is required").trim(),
+  password: yup.string().required("Password is required").trim(),
+});
 
 const Loginpage = (props) => {
-
+  const dispatch = useDispatch();
   const [eye, seteye] = useState(true);
   const [emailerror, setEmailError] = useState("");
   const [nameerror, setNameError] = useState("");
   const [passworderror, setPasswordError] = useState("");
   const [formgroup, setFormGroup] = useState("");
   const [inputValues, setInputValues] = useState({
-    email: "admin@dreamguys.co.in",
-    password: "123456",
+    email: "",
+    password: "",
   });
 
   const {
@@ -45,39 +38,41 @@ const Loginpage = (props) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-  })
+  });
 
   const onSubmit = (data) => {
-    console.log("data", data)
+    // console.log("data", data);
 
-    if (data.password != "123456") {
-      setError('password', {
-        message: 'password is mismatch',
-      })
+    if (!data.password) {
+      setError("password", {
+        message: "Please Enter Password",
+      });
     } else {
-      clearErrors('password')
-      props.history.push('/app/main/dashboard')
-
+      clearErrors("password");
+      dispatch(loginUser(data));
+      // props.history.push('/app/main/dashboard')
     }
-  }
+  };
 
   const onEyeClick = () => {
-    seteye(!eye)
-  }
+    seteye(!eye);
+  };
   return (
-
-
     <>
       <Helmet>
         <title>Login - CRM created by Ebslon Infotech</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="account-content">
-        <Link to="/applyjob/joblist" className="btn btn-primary apply-btn">Apply Job</Link>
+        <Link to="/applyjob/joblist" className="btn btn-primary apply-btn">
+          Apply Job
+        </Link>
         <div className="container">
           {/* Account Logo */}
           <div className="account-logo">
-            <Link to="/app/main/dashboard"><img src={Applogo} alt="Dreamguy's Technologies" /></Link>
+            <Link to="/app/main/dashboard">
+              <img src={Applogo} alt="Dreamguy's Technologies" />
+            </Link>
           </div>
           {/* /Account Logo */}
           <div className="account-box">
@@ -92,11 +87,7 @@ const Loginpage = (props) => {
                     <Controller
                       name="email"
                       control={control}
-                      render={({ field: { value, onChange } }) => (
-                        <input className={`form-control  ${errors?.email ? "error-input" : ""}`} type="text" value={value} onChange={onChange} autoComplete="false" />
-
-                      )}
-                      defaultValue="admin@dreamguys.co.in"
+                      render={({ field: { value, onChange } }) => <input className={`form-control  ${errors?.email ? "error-input" : ""}`} type="text" value={value} onChange={onChange} autoComplete="false" />}
                     />
                     <small>{errors?.email?.message}</small>
                   </div>
@@ -120,22 +111,19 @@ const Loginpage = (props) => {
                           <span onClick={onEyeClick} className={`fa toggle-password" ${eye ? "fa-eye-slash" : "fa-eye"}`} />
                         </div>
                       )}
-                      defaultValue="123456"
                     />
                     <small>{errors?.password?.message}</small>
                   </div>
                   <div className="form-group text-center">
-                    <button
-                      className="btn btn-primary account-btn"
-                      type="submit"
-                    >
+                    <button className="btn btn-primary account-btn" type="submit">
                       Login
                     </button>
-
                   </div>
                 </form>
                 <div className="account-footer">
-                  <p>Don't have an account yet? <Link to="/register">Register</Link></p>
+                  <p>
+                    Don't have an account yet? <Link to="/register">Register</Link>
+                  </p>
                 </div>
               </div>
               {/* /Account Form */}
@@ -145,7 +133,6 @@ const Loginpage = (props) => {
       </div>
     </>
   );
-}
-
+};
 
 export default Loginpage;

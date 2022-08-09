@@ -1,8 +1,10 @@
-import { combineReducers } from '@reduxjs/toolkit'
-import employeeReducer from './features/employee/employeeSlice'
+import { combineReducers } from "@reduxjs/toolkit";
+import employeeReducer from "./features/employee/employeeSlice";
+import authReducer from "./features/auth/authSlice";
 
 const rootReducer = combineReducers({
-    employee: employeeReducer,
-})
+  auth: authReducer,
+  employee: employeeReducer,
+});
 
-export default rootReducer
+export default rootReducer;
