@@ -3,17 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 import { Avatar_11, Avatar_09, Avatar_02, Avatar_10, Avatar_05, Avatar_08 } from "../../Entryfile/imagepath"
-import Editticket from "../../_components/modelbox/Editticket"
+import EditLead from "../../_components/modelbox/EditLead"
 import { Table } from 'antd';
 import 'antd/dist/antd.css';
 import { itemRender, onShowSizeChange } from "../paginationfunction"
 import "../antdstyle.css"
 
-const Tickets = () => {
+const Leads = () => {
 
   const [data, setData] = useState([
     {
-      id: 1, image: Avatar_02, name: "John Doe", ticketid: "TKT-0001", ticketsubject: "Internet Issue",
+      id: 1, image: Avatar_02, name: "John Doe", Leadid: "TKT-0001", Leadsubject: "Internet Issue",
       createddate: "5 Jan 2019 07:21 AM", lastreply: "5 Jan 2019 11.12 AM	", priority: "High", status: "New"
     }
   ]);
@@ -33,12 +33,12 @@ const Tickets = () => {
       sorter: (a, b) => a.id.length - b.id.length,
     },
     {
-      title: 'Ticket Id',
-      dataIndex: 'ticketid',
+      title: 'Lead Id',
+      dataIndex: 'Leadid',
       render: (text, record) => (
-        <Link onClick={() => localStorage.setItem("minheight", "true")} to="/app/employees/ticket-view">#TKT-0001</Link>
+        <Link onClick={() => localStorage.setItem("minheight", "true")} to="/app/employees/Lead-view">#TKT-0001</Link>
       ),
-      sorter: (a, b) => a.ticketid.length - b.ticketid.length,
+      sorter: (a, b) => a.Leadid.length - b.Leadid.length,
     },
     {
       title: 'Assigned Staff',
@@ -100,8 +100,8 @@ const Tickets = () => {
         <div className="dropdown dropdown-action text-end">
           <a href="#" className="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i className="material-icons">more_vert</i></a>
           <div className="dropdown-menu dropdown-menu-right">
-            <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_ticket"><i className="fa fa-pencil m-r-5" /> Edit</a>
-            <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_ticket"><i className="fa fa-trash-o m-r-5" /> Delete</a>
+            <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_Lead"><i className="fa fa-pencil m-r-5" /> Edit</a>
+            <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_Lead"><i className="fa fa-trash-o m-r-5" /> Delete</a>
           </div>
         </div>
       ),
@@ -111,7 +111,7 @@ const Tickets = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Tickets - CRM created by Ebslon Infotech</title>
+        <title>Leads - CRM created by Ebslon Infotech</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}
@@ -120,14 +120,14 @@ const Tickets = () => {
         <div className="page-header">
           <div className="row align-items-center">
             <div className="col">
-              <h3 className="page-title">Tickets</h3>
+              <h3 className="page-title">Leads</h3>
               <ul className="breadcrumb">
                 <li className="breadcrumb-item"><Link to="/app/main/dashboard">Dashboard</Link></li>
-                <li className="breadcrumb-item active">Tickets</li>
+                <li className="breadcrumb-item active">Leads</li>
               </ul>
             </div>
             <div className="col-auto float-end ml-auto">
-              <a href="#" className="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_ticket"><i className="fa fa-plus" /> Add Ticket</a>
+              <a href="#" className="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_Lead"><i className="fa fa-plus" /> Add Lead</a>
             </div>
           </div>
         </div>
@@ -139,7 +139,7 @@ const Tickets = () => {
                 <div className="card-body">
                   <div className="d-flex justify-content-between mb-3">
                     <div>
-                      <span className="d-block">New Tickets</span>
+                      <span className="d-block">New Leads</span>
                     </div>
                     <div>
                       <span className="text-success">+10%</span>
@@ -155,7 +155,7 @@ const Tickets = () => {
                 <div className="card-body">
                   <div className="d-flex justify-content-between mb-3">
                     <div>
-                      <span className="d-block">Solved Tickets</span>
+                      <span className="d-block">Solved Leads</span>
                     </div>
                     <div>
                       <span className="text-success">+12.5%</span>
@@ -171,7 +171,7 @@ const Tickets = () => {
                 <div className="card-body">
                   <div className="d-flex justify-content-between mb-3">
                     <div>
-                      <span className="d-block">Open Tickets</span>
+                      <span className="d-block">Open Leads</span>
                     </div>
                     <div>
                       <span className="text-danger">-2.8%</span>
@@ -187,7 +187,7 @@ const Tickets = () => {
                 <div className="card-body">
                   <div className="d-flex justify-content-between mb-3">
                     <div>
-                      <span className="d-block">Pending Tickets</span>
+                      <span className="d-block">Pending Leads</span>
                     </div>
                     <div>
                       <span className="text-danger">-75%</span>
@@ -275,12 +275,12 @@ const Tickets = () => {
         </div>
       </div>
       {/* /Page Content */}
-      {/* Add Ticket Modal */}
-      <div id="add_ticket" className="modal custom-modal fade" role="dialog">
+      {/* Add Lead Modal */}
+      <div id="add_Lead" className="modal custom-modal fade" role="dialog">
         <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Add Ticket</h5>
+              <h5 className="modal-title">Add Lead</h5>
               <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
@@ -290,13 +290,13 @@ const Tickets = () => {
                 <div className="row">
                   <div className="col-sm-6">
                     <div className="form-group">
-                      <label>Ticket Subject</label>
+                      <label>Lead Subject</label>
                       <input className="form-control" type="text" />
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="form-group">
-                      <label>Ticket Id</label>
+                      <label>Lead Id</label>
                       <input className="form-control" type="text" />
                     </div>
                   </div>
@@ -350,7 +350,7 @@ const Tickets = () => {
                   </div>
                   <div className="col-sm-6">
                     <div className="form-group">
-                      <label>Ticket Assignee</label>
+                      <label>Lead Assignee</label>
                       <div className="project-members">
                         <a title="John Smith" data-placement="top" data-bs-toggle="tooltip" href="#" className="avatar">
                           <img src={Avatar_02} alt="" />
@@ -368,7 +368,7 @@ const Tickets = () => {
                   </div>
                   <div className="col-sm-6">
                     <div className="form-group">
-                      <label>Ticket Followers</label>
+                      <label>Lead Followers</label>
                       <div className="project-members">
                         <a title="Richard Miles" data-bs-toggle="tooltip" href="#" className="avatar">
                           <img src={Avatar_09} alt="" />
@@ -407,17 +407,17 @@ const Tickets = () => {
           </div>
         </div>
       </div>
-      {/* /Add Ticket Modal */}
-      {/* Edit Ticket Modal */}
-      <Editticket />
-      {/* /Edit Ticket Modal */}
-      {/* Delete Ticket Modal */}
-      <div className="modal custom-modal fade" id="delete_ticket" role="dialog">
+      {/* /Add Lead Modal */}
+      {/* Edit Lead Modal */}
+      <EditLead />
+      {/* /Edit Lead Modal */}
+      {/* Delete Lead Modal */}
+      <div className="modal custom-modal fade" id="delete_Lead" role="dialog">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-body">
               <div className="form-header">
-                <h3>Delete Ticket</h3>
+                <h3>Delete Lead</h3>
                 <p>Are you sure want to delete?</p>
               </div>
               <div className="modal-btn delete-action">
@@ -434,9 +434,9 @@ const Tickets = () => {
           </div>
         </div>
       </div>
-      {/* /Delete Ticket Modal */}
+      {/* /Delete Lead Modal */}
     </div>
   );
 }
 
-export default Tickets;
+export default Leads;

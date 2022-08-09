@@ -72,11 +72,14 @@ const Sidebar = (props) => {
               <li className={pathname.includes('clients') ? "active" : ""}>
                 <Link to="/app/employees/clients"><i className="la la-users" /> <span>Clients</span></Link>
               </li>
-              <li className={pathname.includes('leads') ? "active" : ""}>
+              {/* <li className={pathname.includes('leads') ? "active" : ""}>
                 <Link to="/app/employees/leads"><i className="la la-user-secret" /> <span>Leads</span></Link>
-              </li>
-              <li className={pathname.includes('tickets') ? "active" : pathname.includes('ticket-view') ? "active" : ""}>
-                <Link to="/app/employees/tickets"><i className="la la-ticket" /> <span>Tickets</span></Link>
+              </li> */}
+              {/* <li className={pathname.includes('leads') ? "active" : ""}>
+                <Link to="/app/employees/leads"><i className="la la-user-secret" /> <span>Leads</span></Link>
+              </li> */}
+              <li className={pathname.includes('Leads') ? "active" : pathname.includes('Lead-view') ? "active" : ""}>
+                <Link to="/app/employees/Leads"><i className="la la-ticket" /> <span>Leads</span></Link>
               </li>
 
             </ul>

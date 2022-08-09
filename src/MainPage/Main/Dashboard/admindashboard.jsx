@@ -275,13 +275,13 @@ const AdminDashboard = () => {
                       </div>
                     </div>
                     <div className="stats-info">
-                      <p>Open Tickets <strong>190 <small>/ 212</small></strong></p>
+                      <p>Open Leads <strong>190 <small>/ 212</small></strong></p>
                       <div className="progress">
                         <div className="progress-bar bg-danger" role="progressbar" style={{ width: '62%' }} aria-valuenow={62} aria-valuemin={0} aria-valuemax={100} />
                       </div>
                     </div>
                     <div className="stats-info">
-                      <p>Closed Tickets <strong>22 <small>/ 212</small></strong></p>
+                      <p>Closed Leads <strong>22 <small>/ 212</small></strong></p>
                       <div className="progress">
                         <div className="progress-bar bg-info" role="progressbar" style={{ width: '22%' }} aria-valuenow={22} aria-valuemin={0} aria-valuemax={100} />
                       </div>

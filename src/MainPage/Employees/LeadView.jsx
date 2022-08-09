@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 import { Avatar_11, Avatar_08, Avatar_09, Avatar_02, Avatar_10, Avatar_05, PlaceHolder, User, Attachment } from "../../Entryfile/imagepath"
-import Editticket from "../../_components/modelbox/Editticket"
+import EditLead from "../../_components/modelbox/EditLead"
 
-const TicketView = () => {
+const LeadView = () => {
   useEffect(() => {
     let firstload = localStorage.getItem("minheight")
     if (firstload === "true") {
@@ -18,7 +18,7 @@ const TicketView = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Tickets - CRM created by Ebslon Infotech</title>
+        <title>Leads - CRM created by Ebslon Infotech</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="chat-main-row">
@@ -27,8 +27,8 @@ const TicketView = () => {
             <div className="chat-window">
               <div className="fixed-header">
                 <div className="navbar">
-                  <div className="float-start ticket-view-details">
-                    <div className="ticket-header">
+                  <div className="float-start Lead-view-details">
+                    <div className="Lead-header">
                       <span>Status: </span> <span className="badge badge-warning">New</span> <span className="m-l-15 text-muted">Client: </span>
                       <a href="#">Delta Infotech</a>
                       <span className="m-l-15 text-muted">Created: </span>
@@ -50,7 +50,7 @@ const TicketView = () => {
                             <div className="project-title">
                               <div className="m-b-20">
                                 <span className="h5 card-title ">Laptop Issue</span>
-                                <div className="float-end ticket-priority"><span>Priority:</span>
+                                <div className="float-end Lead-priority"><span>Priority:</span>
                                   <div className="btn-group">
                                     <a href="#" className="badge badge-danger dropdown-toggle" data-bs-toggle="dropdown">Highest </a>
                                     <div className="dropdown-menu dropdown-menu-right">
@@ -124,7 +124,7 @@ const TicketView = () => {
                                     <span className="files-icon"><i className="fa fa-file-pdf-o" /></span>
                                   </div>
                                   <div className="files-info">
-                                    <span className="file-name text-ellipsis"><a href="#">Ticket_document.xls</a></span>
+                                    <span className="file-name text-ellipsis"><a href="#">Lead_document.xls</a></span>
                                     <span className="file-author"><a href="#">John Doe</a></span> <span className="file-date">May 5th at 8:21 PM</span>
                                     <div className="file-size">Size: 14.8Mb</div>
                                   </div>
@@ -178,7 +178,7 @@ const TicketView = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-4 message-view task-chat-view ticket-chat-view" id="task_window">
+          <div className="col-lg-4 message-view task-chat-view Lead-chat-view" id="task_window">
             <div className="chat-window">
               <div className="fixed-header">
                 <div className="navbar">
@@ -193,8 +193,8 @@ const TicketView = () => {
                     <li className="nav-item dropdown dropdown-action">
                       <a href className="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i className="material-icons">more_vert</i></a>
                       <div className="dropdown-menu">
-                        <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_ticket">Edit Ticket</a>
-                        <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_ticket">Delete Ticket</a>
+                        <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_Lead">Edit Lead</a>
+                        <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_Lead">Delete Lead</a>
                       </div>
                     </li>
                   </ul>
@@ -223,7 +223,7 @@ const TicketView = () => {
                         </div>
                         <div className="completed-task-msg">
                           <span className="task-success">
-                            <a href="#">John Doe</a> closed this ticket.
+                            <a href="#">John Doe</a> closed this Lead.
                           </span>
                           <span className="task-time">Today at 9:27am</span>
                         </div>
@@ -292,7 +292,7 @@ const TicketView = () => {
                         <div className="task-information">
                           <span className="task-info-line">
                             <a className="task-user" href="#">John Doe</a>
-                            <span className="task-info-subject">marked ticket as reopened</span>
+                            <span className="task-info-subject">marked Lead as reopened</span>
                           </span>
                           <div className="task-time">1:16pm</div>
                         </div>
@@ -336,16 +336,16 @@ const TicketView = () => {
           </div>
         </div>
       </div>
-      {/* Edit Ticket Modal */}
-      <Editticket />
-      {/* /Edit Ticket Modal */}
-      {/* Delete Ticket Modal */}
-      <div className="modal custom-modal fade" id="delete_ticket" role="dialog">
+      {/* Edit Lead Modal */}
+      <EditLead />
+      {/* /Edit Lead Modal */}
+      {/* Delete Lead Modal */}
+      <div className="modal custom-modal fade" id="delete_Lead" role="dialog">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-body">
               <div className="form-header">
-                <h3>Delete Ticket</h3>
+                <h3>Delete Lead</h3>
                 <p>Are you sure want to delete?</p>
               </div>
               <div className="modal-btn delete-action">
@@ -362,7 +362,7 @@ const TicketView = () => {
           </div>
         </div>
       </div>
-      {/* /Delete Ticket Modal */}
+      {/* /Delete Lead Modal */}
       {/* Assignee Modal */}
       <div id="assignee" className="modal custom-modal fade" role="dialog">
         <div className="modal-dialog modal-dialog-centered" role="document">
@@ -503,4 +503,4 @@ const TicketView = () => {
   );
 }
 
-export default TicketView;
+export default LeadView;
