@@ -2,18 +2,22 @@
  * Crm Routes
  */
 /* eslint-disable */
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import Admindashboard from './admindashboard';
-import Employeedashboard from './employeedashboard';
+import React, { useEffect } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import Admindashboard from "./admindashboard";
+import Employeedashboard from "./employeedashboard";
+import { useSelector } from "react-redux";
+import { rolesObj } from "../../../utils/roles";
+const DashboardRoute = ({ match }) => {
+  const role = useSelector((state) => state.auth.role);
 
-const DashboardRoute = ({ match }) => (
-   <Switch>
+  return (
+    <Switch>
       <Redirect exact from={`${match.url}/`} to={`${match.url}/dashboard`} />
-      <Route path={`${match.url}/dashboard`} component={Admindashboard} />
-      <Route path={`${match.url}/employee-dashboard`} component={Employeedashboard} />
-   </Switch>
-  
-);
+      {role == "ADMIN" && <Route path={`${match.url}/dashboard`} component={Admindashboard} />}
+      {(role == rolesObj.TEAMLEAD || role == rolesObj.AGENT) && <Route path={`${match.url}/employee-dashboard`} component={Employeedashboard} />}
+    </Switch>
+  );
+};
 
 export default DashboardRoute;

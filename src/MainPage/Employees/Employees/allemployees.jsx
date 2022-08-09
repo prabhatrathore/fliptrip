@@ -1,101 +1,91 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from 'react-router-dom';
-import {
-  Avatar_01, Avatar_02, Avatar_03, Avatar_04, Avatar_05, Avatar_11, Avatar_12, Avatar_09,
-  Avatar_10, Avatar_08, Avatar_13, Avatar_16
-} from "../../../Entryfile/imagepath"
-import Addemployee from "../../../_components/modelbox/Addemployee"
-import Editemployee from "../../../_components/modelbox/Editemployee"
-import Header from '../../../initialpage/Sidebar/header'
-import Sidebar from '../../../initialpage/Sidebar/sidebar'
-import { deleteEmployees, getEmployess } from '../../../Services/user.service';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllEmployees, returnAllEmployees } from '../../../redux/features/employee/employeeSlice';
-import { toastError } from '../../../utils/toastUtils';
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Avatar_02 } from "../../../Entryfile/imagepath";
+import Header from "../../../initialpage/Sidebar/header";
+import Sidebar from "../../../initialpage/Sidebar/sidebar";
+import { getAllEmployees, returnAllEmployees } from "../../../redux/features/employee/employeeSlice";
+import { deleteEmployees, getEmployess } from "../../../Services/user.service";
+import { toastError } from "../../../utils/toastUtils";
+import Addemployee from "../../../_components/modelbox/Addemployee";
+import Editemployee from "../../../_components/modelbox/Editemployee";
 
 const AllEmployees = () => {
-  const employees = useSelector(getAllEmployees)
-  const [menu, setMenu] = useState(false)
+  const employees = useSelector(getAllEmployees);
+  const [menu, setMenu] = useState(false);
   const [employeeArr, setEmployeeArr] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState({});
   const [employeeIdQuery, setEmployeeIdQuery] = useState("");
   const [employeeNameQuery, setEmployeeNameQuery] = useState("");
   const [displayEmployeeArr, setDisplayEmployeeArr] = useState([]);
 
-  const dispatch = useDispatch()
+  const role = useSelector((state) => state.auth.role);
+  const dispatch = useDispatch();
   const toggleMobileMenu = () => {
-    setMenu(!menu)
-  }
+    setMenu(!menu);
+  };
 
   useEffect(() => {
-    if ($('.select').length > 0) {
-      $('.select').select2({
+    if ($(".select").length > 0) {
+      $(".select").select2({
         minimumResultsForSearch: -1,
-        width: '100%'
+        width: "100%",
       });
     }
   });
 
-
-
   const handleFilterByEmployeeId = (query) => {
-    setEmployeeIdQuery(query)
-    let tempArr = employeeArr.filter(el => `${el.employeeId}`.toLowerCase().includes(query.toLowerCase()))
-    setDisplayEmployeeArr([...tempArr])
-  }
-
+    setEmployeeIdQuery(query);
+    let tempArr = employeeArr.filter((el) => `${el.employeeId}`.toLowerCase().includes(query.toLowerCase()));
+    setDisplayEmployeeArr([...tempArr]);
+  };
 
   const handleFilterByEmployeeName = (query) => {
-    setEmployeeNameQuery(query)
-    let tempArr = employeeArr.filter(el => `${el.firstName} ${el.lastName}`.toLowerCase().includes(query.toLowerCase()))
-    setDisplayEmployeeArr([...tempArr])
-  }
+    setEmployeeNameQuery(query);
+    let tempArr = employeeArr.filter((el) => `${el.firstName} ${el.lastName}`.toLowerCase().includes(query.toLowerCase()));
+    setDisplayEmployeeArr([...tempArr]);
+  };
 
   const handleGetAllEmployees = async () => {
     try {
-      let { data: res } = await getEmployess()
+      let { data: res } = await getEmployess(role);
       if (res.success) {
-        console.log(res, "res")
-        dispatch(returnAllEmployees(res.data))
+        console.log(res, "res");
+        dispatch(returnAllEmployees(res.data));
       }
     } catch (error) {
-      console.error(error)
-      toastError(error)
+      console.error(error);
+      toastError(error);
     }
-  }
-
+  };
 
   const handleEmployeeDelete = async () => {
     try {
-      let { data: res } = await deleteEmployees(selectedEmployee._id)
+      let { data: res } = await deleteEmployees(selectedEmployee._id);
       if (res.success) {
-        handleGetAllEmployees()
+        handleGetAllEmployees();
         // console.log(res, "res")
         // dispatch(returnAllEmployees(res.data))
       }
     } catch (error) {
-      console.error(error)
-      toastError(error)
+      console.error(error);
+      toastError(error);
     }
-  }
-
-
+  };
 
   useEffect(() => {
-    handleGetAllEmployees()
-  }, [])
-
+    handleGetAllEmployees();
+  }, []);
 
   useEffect(() => {
     if (employees && employees.length > 0) {
       setEmployeeArr(employees);
       setDisplayEmployeeArr(employeeArr);
     }
-  }, [employees])
+  }, [employees]);
   return (
-    <div className={`main-wrapper ${menu ? 'slide-nav' : ''}`}>
-
+    <div className={`main-wrapper ${menu ? "slide-nav" : ""}`}>
       <Header onMenuClick={(value) => toggleMobileMenu()} />
       <Sidebar />
       <div className="page-wrapper">
@@ -111,15 +101,23 @@ const AllEmployees = () => {
               <div className="col">
                 <h3 className="page-title">Employee</h3>
                 <ul className="breadcrumb">
-                  <li className="breadcrumb-item"><Link to="/app/main/dashboard">Dashboard</Link></li>
+                  <li className="breadcrumb-item">
+                    <Link to="/app/main/dashboard">Dashboard</Link>
+                  </li>
                   <li className="breadcrumb-item active">Employee</li>
                 </ul>
               </div>
               <div className="col-auto float-end ml-auto">
-                <a href="#" className="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_employee"><i className="fa fa-plus" /> Add Employee</a>
+                <a href="#" className="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_employee">
+                  <i className="fa fa-plus" /> Add Employee
+                </a>
                 <div className="view-icons">
-                  <Link to="/app/employee/allemployees" className="grid-view btn btn-link active"><i className="fa fa-th" /></Link>
-                  <Link to="/app/employee/employees-list" className="list-view btn btn-link"><i className="fa fa-bars" /></Link>
+                  <Link to="/app/employee/allemployees" className="grid-view btn btn-link active">
+                    <i className="fa fa-th" />
+                  </Link>
+                  <Link to="/app/employee/employees-list" className="list-view btn btn-link">
+                    <i className="fa fa-bars" />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -157,30 +155,46 @@ const AllEmployees = () => {
           </div>
           {/* Search Filter */}
           <div className="row staff-grid-row">
-            {
-              displayEmployeeArr && displayEmployeeArr.length > 0 && displayEmployeeArr.map((el, index) => {
+            {displayEmployeeArr &&
+              displayEmployeeArr.length > 0 &&
+              displayEmployeeArr.map((el, index) => {
                 return (
                   <div key={index} className="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                     <div className="profile-widget">
                       <div className="profile-img">
-                        <Link to={`/app/profile/employee-profile/${el._id}`} className="avatar"><img src={Avatar_02} alt="" /></Link>
+                        <Link to={`/app/profile/employee-profile/${el._id}`} className="avatar">
+                          <img src={Avatar_02} alt="" />
+                        </Link>
                       </div>
                       <div className="dropdown profile-action">
-                        <a href="#" className="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i className="material-icons">more_vert</i></a>
+                        <a href="#" className="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i className="material-icons">more_vert</i>
+                        </a>
                         <div className="dropdown-menu dropdown-menu-right">
                           {/* <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_employee"><i className="fa fa-pencil m-r-5" /> Edit</a> */}
-                          <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_employee" onClick={() => { setSelectedEmployee(el) }} ><i className="fa fa-trash-o m-r-5" /> Delete</a>
+                          <a
+                            className="dropdown-item"
+                            href="#"
+                            data-bs-toggle="modal"
+                            data-bs-target="#delete_employee"
+                            onClick={() => {
+                              setSelectedEmployee(el);
+                            }}
+                          >
+                            <i className="fa fa-trash-o m-r-5" /> Delete
+                          </a>
                         </div>
                       </div>
-                      <h4 className="user-name m-t-10 mb-0 text-ellipsis"><Link to={`/app/profile/employee-profile/${el._id}`}>{el.firstName} {el.lastName}</Link></h4>
+                      <h4 className="user-name m-t-10 mb-0 text-ellipsis">
+                        <Link to={`/app/profile/employee-profile/${el._id}`}>
+                          {el.firstName} {el.lastName}
+                        </Link>
+                      </h4>
                       <div className="small text-muted">{el.role}</div>
                     </div>
                   </div>
-                )
-              })
-            }
-
-
+                );
+              })}
           </div>
         </div>
         {/* /Page Content */}
@@ -202,10 +216,14 @@ const AllEmployees = () => {
                 <div className="modal-btn delete-action">
                   <div className="row">
                     <div className="col-6">
-                      <a data-bs-dismiss="modal" onClick={() => handleEmployeeDelete()} className="btn btn-primary continue-btn" >Delete</a>
+                      <a data-bs-dismiss="modal" onClick={() => handleEmployeeDelete()} className="btn btn-primary continue-btn">
+                        Delete
+                      </a>
                     </div>
                     <div className="col-6">
-                      <a data-bs-dismiss="modal" className="btn btn-primary cancel-btn">Cancel</a>
+                      <a data-bs-dismiss="modal" className="btn btn-primary cancel-btn">
+                        Cancel
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -217,6 +235,6 @@ const AllEmployees = () => {
       </div>
     </div>
   );
-}
+};
 
 export default AllEmployees;

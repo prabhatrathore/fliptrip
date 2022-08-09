@@ -64,9 +64,9 @@ const Loginpage = (props) => {
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="account-content">
-        <Link to="/applyjob/joblist" className="btn btn-primary apply-btn">
+        {/* <Link to="/applyjob/joblist" className="btn btn-primary apply-btn">
           Apply Job
-        </Link>
+        </Link> */}
         <div className="container">
           {/* Account Logo */}
           <div className="account-logo">
