@@ -70,6 +70,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-scrollspy-nav": "^1.2.4",
+    "react-select": "^5.4.0",
     "react-select2-wrapper": "^1.0.4-beta6",
     "react-slick": "^0.27.7",
     "react-sticky": "^6.0.3",

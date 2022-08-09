@@ -8,8 +8,27 @@ import { Table } from 'antd';
 import 'antd/dist/antd.css';
 import { itemRender, onShowSizeChange } from "../paginationfunction"
 import "../antdstyle.css"
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllAgents, getAllEmployees, returnAllEmployees } from '../../redux/features/employee/employeeSlice';
+import { getEmployess } from '../../Services/user.service';
+import Select from 'react-select';
+import { toastError, toastSuccess } from '../../utils/toastUtils';
+import { createLead } from '../../Services/lead.service';
 
 const Leads = () => {
+  const employees = useSelector(getAllAgents)
+  const [agentsArr, setAgentsArr] = useState([]);
+  const dispatch = useDispatch()
+
+
+
+  const [subject, setSubject] = useState("");
+  const [phone, setPhone] = useState("");
+  const [agentId, setAgentId] = useState("");
+  const [description, setDescription] = useState("");
+  const [fileUrl, setFileUrl] = useState("");
+  const [priority, setPriority] = useState("");
+
 
   const [data, setData] = useState([
     {
@@ -25,6 +44,113 @@ const Leads = () => {
       });
     }
   });
+
+
+  const handleGetAllEmployees = async () => {
+    try {
+      let { data: res } = await getEmployess()
+      if (res.success) {
+        console.log(res, "res")
+        dispatch(returnAllEmployees(res.data))
+      }
+    } catch (error) {
+      console.error(error)
+      toastError(error)
+    }
+  }
+
+
+
+
+
+  useEffect(() => {
+    if (employees && employees.length > 0) {
+      let tempArr = employees.map((el) => {
+        let obj = {
+          label: `${el.firstName} ${el.lastName}`,
+          value: el._id,
+        }
+        return obj
+      })
+      setAgentsArr([...tempArr])
+    }
+  }, [employees])
+
+
+  useEffect(() => {
+    handleGetAllEmployees()
+  }, [])
+
+
+
+
+
+  const getBase64 = (file, cb) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      cb(reader.result);
+    };
+    reader.onerror = function (error) {
+      // console.log('Error: ', error)
+    };
+  };
+  const handleFileSelection = (event) => {
+    if (event.target.files[0]) {
+      getBase64(event.target.files[0], (result) => {
+        console.log(result, "result")
+        setFileUrl(result);
+      });
+    }
+  };
+
+
+
+
+  const handleSubmitLead = async (e) => {
+    e.preventDefault()
+    try {
+
+      if (subject == "") {
+        toastError("Subject cannot be empty");
+        return
+      }
+      if (`${phone}` == "") {
+        toastError("Phone cannot be empty");
+        return
+      }
+      if (`${phone}`.length != 10) {
+        toastError("Phone must be 10 digits long");
+        return
+      }
+      if (`${agentId}` == "") {
+        toastError("Agent cannot be empty");
+        return
+      }
+      if (`${description}` == "") {
+        toastError("Description cannot be empty");
+        return
+      }
+      let obj = {
+        subject,
+        phone,
+        agentId,
+        description,
+        fileUrl,
+        priority,
+      }
+      let { data: res } = await createLead(obj);
+      if (res.success) {
+        toastSuccess(res.message)
+      }
+    }
+    catch (err) {
+      toastError(err)
+      console.error(err)
+    }
+  }
+
+
 
   const columns = [
     {
@@ -108,6 +234,35 @@ const Leads = () => {
     },
 
   ]
+
+
+
+  const handlePriorityChange = (e) => {
+    setPriority(e.value)
+  }
+
+
+  const handleAgentChange = (e) => {
+    setAgentId(e.value)
+  }
+
+  const options = [
+    {
+      label: "High",
+      value: "High"
+    },
+    {
+      label: "Medium",
+      value: "Medium"
+    },
+    {
+      label: "Low",
+      value: "Low"
+    },
+  ]
+
+
+
   return (
     <div className="page-wrapper">
       <Helmet>
@@ -291,27 +446,18 @@ const Leads = () => {
                   <div className="col-sm-6">
                     <div className="form-group">
                       <label>Lead Subject</label>
-                      <input className="form-control" type="text" />
+                      <input value={subject} onChange={(e) => setSubject(e.target.value)} className="form-control" type="text" />
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="form-group">
-                      <label>Lead Id</label>
-                      <input className="form-control" type="text" />
+                      <label>Phone</label>
+                      <input value={phone} onChange={(e) => setPhone(e.target.value)} type={"tel"} maxLength={10} className="form-control" />
                     </div>
                   </div>
+
                 </div>
                 <div className="row">
-                  <div className="col-sm-6">
-                    <div className="form-group">
-                      <label>Assign Staff</label>
-                      <select className="select">
-                        <option>-</option>
-                        <option>Mike Litorus</option>
-                        <option>John Smith</option>
-                      </select>
-                    </div>
-                  </div>
                   <div className="col-sm-6">
                     <div className="form-group">
                       <label>Client</label>
@@ -322,85 +468,40 @@ const Leads = () => {
                       </select>
                     </div>
                   </div>
-                </div>
-                <div className="row">
+
                   <div className="col-sm-6">
                     <div className="form-group">
                       <label>Priority</label>
-                      <select className="select">
-                        <option>High</option>
-                        <option>Medium</option>
-                        <option>Low</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="form-group">
-                      <label>CC</label>
-                      <input className="form-control" type="text" />
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6">
-                    <div className="form-group">
-                      <label>Assign</label>
-                      <input type="text" className="form-control" />
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="form-group">
-                      <label>Lead Assignee</label>
-                      <div className="project-members">
-                        <a title="John Smith" data-placement="top" data-bs-toggle="tooltip" href="#" className="avatar">
-                          <img src={Avatar_02} alt="" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6">
-                    <div className="form-group">
-                      <label>Add Followers</label>
-                      <input type="text" className="form-control" />
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="form-group">
-                      <label>Lead Followers</label>
-                      <div className="project-members">
-                        <a title="Richard Miles" data-bs-toggle="tooltip" href="#" className="avatar">
-                          <img src={Avatar_09} alt="" />
-                        </a>
-                        <a title="John Smith" data-bs-toggle="tooltip" href="#" className="avatar">
-                          <img src={Avatar_10} alt="" />
-                        </a>
-                        <a title="Mike Litorus" data-bs-toggle="tooltip" href="#" className="avatar">
-                          <img src={Avatar_05} alt="" />
-                        </a>
-                        <a title="Wilmer Deluna" data-bs-toggle="tooltip" href="#" className="avatar">
-                          <img src={Avatar_11} alt="" />
-                        </a>
-                        <span className="all-team">+2</span>
-                      </div>
+                      <Select
+                        onChange={handlePriorityChange}
+                        options={options}
+                      />
                     </div>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-sm-12">
+                    <div className="col-sm-12">
+                      <div className="form-group">
+                        <label>Assign Staff {agentsArr.length}</label>
+                        <Select
+                          onChange={handleAgentChange}
+                          options={agentsArr}
+                        />
+                      </div>
+                    </div>
                     <div className="form-group">
                       <label>Description</label>
-                      <textarea className="form-control" defaultValue={""} />
+                      <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="form-control" />
                     </div>
                     <div className="form-group">
                       <label>Upload Files</label>
-                      <input className="form-control" type="file" />
+                      <input onChange={(e) => handleFileSelection(e)} className="form-control" type="file" />
                     </div>
                   </div>
                 </div>
                 <div className="submit-section">
-                  <button className="btn btn-primary submit-btn">Submit</button>
+                  <button onClick={(e) => handleSubmitLead(e)} className="btn btn-primary submit-btn">Submit</button>
                 </div>
               </form>
             </div>

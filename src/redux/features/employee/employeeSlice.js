@@ -26,6 +26,7 @@ const employeeSlice = createSlice({
 export const { addEmployee, returnAllEmployees, getEmployeeById } = employeeSlice.actions;
 export const getAllEmployees = (state) => state.employee.employeesArr
 export const getAllTeamLeadsEmployees = (state) => state.employee.employeesArr.filter(el => el.role == rolesObj.TEAMLEAD)
+export const getAllAgents = (state) => state.employee.employeesArr.filter(el => el.role == rolesObj.AGENT)
 
 
 export default employeeSlice.reducer
