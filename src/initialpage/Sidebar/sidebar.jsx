@@ -138,7 +138,7 @@ const Sidebar = (props) => {
             </div>
           </div>
         )}
-        {role == rolesObj.AGENT && (
+        {role == rolesObj.SPOKE && (
           <div className="sidebar-inner slimscroll">
             <div id="sidebar-menu" className="sidebar-menu">
               <ul>

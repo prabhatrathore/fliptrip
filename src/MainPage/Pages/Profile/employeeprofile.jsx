@@ -97,7 +97,7 @@ const EmployeeProfile = () => {
                           </li>
 
                           {
-                            employeeObj?.role == rolesObj.AGENT &&
+                            employeeObj?.role == rolesObj.SPOKE &&
                             <li>
                               <div className="title">Reports to:</div>
                               <div className="text">

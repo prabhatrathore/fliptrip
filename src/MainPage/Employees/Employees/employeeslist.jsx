@@ -231,7 +231,7 @@ const Employeeslist = () => {
                 <label className="focus-label">Designation</label>
                 <select value={employeeRoleQuery} onChange={(e) => setEmployeeRoleQuery(e.target.value)} className="select floating">
                   <option>Select Role</option>
-                  <option value={rolesObj.AGENT}>{rolesObj.AGENT}</option>
+                  <option value={rolesObj.SPOKE}>{rolesObj.SPOKE}</option>
                   <option value={rolesObj.TEAMLEAD}>{rolesObj.TEAMLEAD}</option>
                 </select>
               </div>

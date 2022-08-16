@@ -84,7 +84,7 @@ const Addemployee = () => {
         toast.error("Role cannot be empty")
         return
       }
-      if (role == rolesObj.AGENT && leadId == "") {
+      if (role == rolesObj.SPOKE && leadId == "") {
         toast.error("Team Lead cannot be empty")
         return
       }
@@ -101,7 +101,7 @@ const Addemployee = () => {
         role,
         emergencyContact,
       }
-      if (role == rolesObj.AGENT) {
+      if (role == rolesObj.SPOKE) {
         obj.leadId = leadId
       }
       let { data: res } = await addEmployeeToDb(obj)
@@ -217,13 +217,13 @@ const Addemployee = () => {
                       <select value={role} onChange={(e) => { setRole(e.target.value) }} className={styles.selectStyle}>
                         <option value="">Please Select Role</option>
                         <option value={rolesObj.TEAMLEAD}>{rolesObj.TEAMLEAD}</option>
-                        <option value={rolesObj.AGENT}>{rolesObj.AGENT}</option>
+                        <option value={rolesObj.SPOKE}>{rolesObj.SPOKE}</option>
                       </select>
                     </div>
                   </div>
 
                   {
-                    role == rolesObj.AGENT &&
+                    role == rolesObj.SPOKE &&
 
                     <div className="col-md-6 mt-3">
                       <div className="form-group">

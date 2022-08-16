@@ -167,25 +167,28 @@ const AllEmployees = () => {
                           <img src={Avatar_02} alt="" />
                         </Link>
                       </div>
-                      <div className="dropdown profile-action">
-                        <a href="#" className="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i className="material-icons">more_vert</i>
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-right">
-                          {/* <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_employee"><i className="fa fa-pencil m-r-5" /> Edit</a> */}
-                          <a
-                            className="dropdown-item"
-                            href="#"
-                            data-bs-toggle="modal"
-                            data-bs-target="#delete_employee"
-                            onClick={() => {
-                              setSelectedEmployee(el);
-                            }}
-                          >
-                            <i className="fa fa-trash-o m-r-5" /> Delete
+                      {
+                        role == "ADMIN" &&
+                        <div className="dropdown profile-action">
+                          <a href="#" className="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i className="material-icons">more_vert</i>
                           </a>
+                          <div className="dropdown-menu dropdown-menu-right">
+                            {/* <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_employee"><i className="fa fa-pencil m-r-5" /> Edit</a> */}
+                            <a
+                              className="dropdown-item"
+                              href="#"
+                              data-bs-toggle="modal"
+                              data-bs-target="#delete_employee"
+                              onClick={() => {
+                                setSelectedEmployee(el);
+                              }}
+                            >
+                              <i className="fa fa-trash-o m-r-5" /> Delete
+                            </a>
+                          </div>
                         </div>
-                      </div>
+                      }
                       <h4 className="user-name m-t-10 mb-0 text-ellipsis">
                         <Link to={`/app/profile/employee-profile/${el._id}`}>
                           {el.firstName} {el.lastName}

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 import { Avatar_11, Avatar_09, Avatar_02, Avatar_10, Avatar_05, Avatar_08 } from "../../Entryfile/imagepath"
@@ -9,16 +9,19 @@ import 'antd/dist/antd.css';
 import { itemRender, onShowSizeChange } from "../paginationfunction"
 import "../antdstyle.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllAgents, getAllEmployees, returnAllEmployees } from '../../redux/features/employee/employeeSlice';
+import { getAllAgents, getAllEmployees, getAllTeamLeadsEmployees, returnAllEmployees } from '../../redux/features/employee/employeeSlice';
 import { getEmployess } from '../../Services/user.service';
 import Select from 'react-select';
 import { toastError, toastSuccess } from '../../utils/toastUtils';
-import { createLead, getLeadsByRole, updateLeadStatus } from '../../Services/lead.service';
+import { assignLeadToagent, createLead, getLeadsByRole, updateLeadStatus } from '../../Services/lead.service';
 import { admin, leadStatus, rolesObj } from '../../utils/roles';
 
 const Leads = () => {
-  const employees = useSelector(getAllAgents)
+  const agents = useSelector(getAllAgents)
+  const teamLeads = useSelector(getAllTeamLeadsEmployees);
+
   const [agentsArr, setAgentsArr] = useState([]);
+  const [teamLeadsArr, setTeamLeadsArr] = useState([]);
   const dispatch = useDispatch()
   const role = useSelector((state) => state.auth.role);
   const userObj = useSelector((state) => state.auth.user);
@@ -27,12 +30,17 @@ const Leads = () => {
   const [subject, setSubject] = useState("");
   const [phone, setPhone] = useState("");
   const [agentId, setAgentId] = useState("");
+  const [leadId, setLeadId] = useState("");
   const [description, setDescription] = useState("");
   const [fileUrl, setFileUrl] = useState("");
   const [priority, setPriority] = useState("");
-
+  const [selectedLeadId, setSelectedLeadId] = useState("");
   const [employeeNameQuery, setEmployeeNameQuery] = useState("");
   const [priorityQuery, setPriorityQuery] = useState("");
+
+  const agentSelect = useRef()
+  const teamLeadSelect = useRef()
+
   const [data, setData] = useState([
     {
       id: 1, image: Avatar_02, name: "John Doe", Leadid: "TKT-0001", Leadsubject: "Internet Issue",
@@ -77,7 +85,7 @@ const Leads = () => {
 
   const handleGetAllEmployees = async () => {
     try {
-      let { data: res } = await getEmployess(userObj._id, role)
+      let { data: res } = await getEmployess(userObj?._id, role)
       if (res.success) {
         console.log(res, "res")
         dispatch(returnAllEmployees(res.data))
@@ -92,7 +100,7 @@ const Leads = () => {
   const handleGetAllLeads = async () => {
     try {
 
-      let { data: res } = await getLeadsByRole(userObj._id, role)
+      let { data: res } = await getLeadsByRole(userObj?._id, role)
       if (res.success) {
         setDisplayLeadsArr(res.data);
         setLeadsArr(res.data);
@@ -113,17 +121,32 @@ const Leads = () => {
 
 
   useEffect(() => {
-    if (employees && employees.length > 0) {
-      let tempArr = employees.map((el) => {
+    if (agents && agents.length > 0) {
+      let tempArr = agents.map((el) => {
         let obj = {
           label: `${el.firstName} ${el.lastName}`,
-          value: el._id,
+          value: el?._id,
+          leadId: el?.leadId
         }
         return obj
       })
       setAgentsArr([...tempArr])
     }
-  }, [employees])
+  }, [agents])
+
+
+  useEffect(() => {
+    if (teamLeads && teamLeads.length > 0) {
+      let tempArr = teamLeads.map((el) => {
+        let obj = {
+          label: `${el.firstName} ${el.lastName}`,
+          value: el?._id,
+        }
+        return obj
+      })
+      setTeamLeadsArr([...tempArr])
+    }
+  }, [agents])
 
 
   useEffect(() => {
@@ -192,10 +215,10 @@ const Leads = () => {
         toastError("Phone must be 10 digits long");
         return
       }
-      if (`${agentId}` == "") {
-        toastError("Agent cannot be empty");
-        return
-      }
+      // if (`${agentId}` == "") {
+      //   toastError("Agent cannot be empty");
+      //   return
+      // }
       if (`${description}` == "") {
         toastError("Description cannot be empty");
         return
@@ -203,12 +226,26 @@ const Leads = () => {
       let obj = {
         subject,
         phone,
-        agentId,
         description,
         fileUrl,
         priority,
       }
-      let { data: res } = await createLead(obj);
+
+
+      if (agentId != "" && leadId == "") {
+        obj.agentId = agentId
+      }
+      if (leadId != "" && agentId == "") {
+        obj.leadId = leadId
+      }
+      if (leadId != "" && agentId != "") {
+        obj.leadId = leadId
+      }
+      else if (role == rolesObj.TEAMLEAD) {
+        obj.leadId = userObj?._id
+      }
+
+      let { data: res } = await createLead(obj, role);
       if (res.success) {
         toastSuccess(res.message)
         handleGetAllLeads()
@@ -220,7 +257,30 @@ const Leads = () => {
     }
   }
 
+  const handleAssignLeadToAgent = async () => {
+    try {
 
+      if (agentId == "") {
+        toastError("Please Select an agent to proceed");
+        return
+      }
+      if (selectedLeadId == "") {
+        toastError("Lead not selected");
+        return
+      }
+      console.log(leadId)
+      let obj = {
+        agentId: agentId,
+      }
+      let { data: res } = await assignLeadToagent(selectedLeadId, obj)
+      if (res.success) {
+        handleGetAllLeads()
+      }
+    } catch (error) {
+      console.error(error)
+      toastError(error)
+    }
+  }
 
   const handleLeadStatusUpdate = async (id, value) => {
     try {
@@ -248,7 +308,14 @@ const Leads = () => {
 
 
   const handleAgentChange = (e) => {
+    setLeadId("")
     setAgentId(e.value)
+  }
+
+  const handleTeamLeadChange = (e) => {
+    setLeadId(e.value)
+    setAgentId("")
+
   }
 
   const options = [
@@ -272,6 +339,108 @@ const Leads = () => {
 
 
 
+
+
+  const handleReturndropDown = (record) => {
+    console.log(role, "role")
+    console.log(record?.status, "role")
+    // console.log(role == "ADMIN" || role == rolesObj.SPOKE && record?.status == leadStatus.closed, "role != ADMIN || role == rolesObj.SPOKE && record?.status != leadStatus.closed")
+    if (role == "ADMIN") {
+      return <>
+        <div>
+          {
+            record?.status == leadStatus.on_Hold || record?.status == leadStatus.cancelled ?
+              <i className="fa fa-dot-circle-o text-danger" />
+              :
+              record?.status == leadStatus.open || record?.status == leadStatus.reopened ?
+                <i className="fa fa-dot-circle-o text-info" />
+                :
+                <i className="fa fa-dot-circle-o text-success" />
+          }
+          {record?.status}
+        </div>
+      </>
+    }
+    else if ((role == rolesObj.SPOKE && record?.status == leadStatus.closed)) {
+      return <>
+        <div>
+          {
+            record?.status == leadStatus.on_Hold || record?.status == leadStatus.cancelled ?
+              <i className="fa fa-dot-circle-o text-danger" />
+              :
+              record?.status == leadStatus.open || record?.status == leadStatus.reopened ?
+                <i className="fa fa-dot-circle-o text-info" />
+                :
+                record?.status == leadStatus.closedBySpoke ?
+                  <i className="fa fa-dot-circle-o text-warning" />
+                  :
+                  <i className="fa fa-dot-circle-o text-success" />
+          }
+          {record?.status}
+        </div>
+      </>
+    }
+    else if ((role == rolesObj.SPOKE && record?.status == leadStatus.closedBySpoke)) {
+      return <>
+        <div>
+          {
+            record?.status == leadStatus.on_Hold || record?.status == leadStatus.cancelled ?
+              <i className="fa fa-dot-circle-o text-danger" />
+              :
+              record?.status == leadStatus.open || record?.status == leadStatus.reopened ?
+                <i className="fa fa-dot-circle-o text-info" />
+                :
+                record?.status == leadStatus.closedBySpoke ?
+                  <i className="fa fa-dot-circle-o text-warning" />
+                  :
+                  <i className="fa fa-dot-circle-o text-success" />
+          }
+          {record?.status}
+        </div>
+      </>
+    }
+
+    else {
+      return <>
+        <a className="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+          {
+            record?.status == leadStatus.open || record?.status == leadStatus.reopened ?
+              <i className="fa fa-dot-circle-o text-info" />
+              :
+              record?.status == leadStatus.on_Hold || record?.status == leadStatus.cancelled ?
+                <i className="fa fa-dot-circle-o text-danger" />
+                :
+                record?.status == leadStatus.closedBySpoke ?
+                  <i className="fa fa-dot-circle-o text-warning" />
+                  :
+                  <i className="fa fa-dot-circle-o text-success" />
+          }
+          {record?.status}
+        </a>
+        <div className="dropdown-menu dropdown-menu-right">
+          <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record?._id, leadStatus.open)}><i className="fa fa-dot-circle-o text-info" /> Open</a>
+          <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record?._id, leadStatus.reopened)}><i className="fa fa-dot-circle-o text-info" /> Reopened</a>
+          <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record?._id, leadStatus.on_Hold)}><i className="fa fa-dot-circle-o text-danger" /> On Hold</a>
+          {
+            role == rolesObj.TEAMLEAD ?
+              <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record?._id, leadStatus.closed)}><i className="fa fa-dot-circle-o text-success" /> Closed</a>
+              :
+              <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record?._id, leadStatus.closedBySpoke)}><i className="fa fa-dot-circle-o text-warning" /> Closed By Spoke</a>
+
+          }
+          <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record?._id, leadStatus.in_Progress)}><i className="fa fa-dot-circle-o text-success" /> In Progress</a>
+          <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record?._id, leadStatus.cancelled)}><i className="fa fa-dot-circle-o text-danger" /> Cancelled</a>
+        </div>
+      </>
+
+    }
+  }
+
+
+
+
+
+
   const columns = [
     {
       title: 'Lead Subject',
@@ -286,11 +455,22 @@ const Leads = () => {
     //   sorter: (a, b) => a.Leadid.length - b.Leadid.length,
     // },
     {
-      title: 'Assigned Agent',
+      title: 'Assigned Spoke',
       render: (text, record) => (
         <h2 className="table-avatar">
-          <Link to={`/app/profile/employee-profile/${record.agentObj._id}`} className="avatar"><img alt="" src={record.image} /></Link>
-          <Link to={`/app/profile/employee-profile/${record.agentObj._id}`}>{`${record.agentObj.firstName} ${record.agentObj.lastName}`}</Link>
+          {
+            record.agentObj ?
+              <>
+                <Link to={`/app/profile/employee-profile/${record?.agentObj?._id}`} className="avatar"><img alt="" src={record?.image} /></Link>
+                <Link to={`/app/profile/employee-profile/${record?.agentObj?._id}`}>{`${record?.agentObj?.firstName ? record?.agentObj?.firstName : "NA"} ${record?.agentObj?.lastName ? record?.agentObj?.lastName : ""}`}</Link>
+              </>
+              :
+              <>
+                <div onClick={() => setSelectedLeadId(record._id)} className="avatar"><img alt="" onClick={() => setSelectedLeadId(record._id)} src={record?.image} /></div>
+                <div data-bs-toggle="modal" onClick={() => setSelectedLeadId(record._id)} data-bs-target="#update_agent">NA</div>
+                {/* update_agent */}
+              </>
+          }
         </h2>
       ),
     },
@@ -298,7 +478,7 @@ const Leads = () => {
       title: 'Assigned Team Lead',
       render: (text, record) => (
         <h2 className="table-avatar">
-          <Link to={`/app/profile/employee-profile/${record?.leadObj?._id}`} className="avatar"><img alt="" src={record.image} /></Link>
+          <Link to={`/app/profile/employee-profile/${record?.leadObj?._id}`} className="avatar"><img alt="" src={record?.image} /></Link>
           <Link to={`/app/profile/employee-profile/${record?.leadObj?._id}`}>{`${record?.leadObj?.firstName} ${record?.leadObj?.lastName}`}</Link>
         </h2>
       ),
@@ -307,7 +487,7 @@ const Leads = () => {
       title: 'Created Date',
       render: (text, record) => (
         <h2 className="table-avatar">
-          {new Date(record.createdAt).toDateString()}
+          {new Date(record?.createdAt).toDateString()}
         </h2>
       ),
     },
@@ -320,7 +500,7 @@ const Leads = () => {
       title: 'Priority',
       render: (text, record) => (
         <div className="dropdown action-label">
-          {record.priority}
+          {record?.priority}
         </div>
       ),
     },
@@ -329,45 +509,7 @@ const Leads = () => {
       dataIndex: 'status',
       render: (text, record) => (
         <div className="dropdown action-label text-center">
-          {
-            role == rolesObj.AGENT ?
-              <>
-                <a className="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                  {
-                    record.status == leadStatus.open || record.status == leadStatus.reopened ?
-                      <i className="fa fa-dot-circle-o text-info" />
-                      :
-                      record.status == leadStatus.on_Hold || record.status == leadStatus.cancelled ?
-
-                        <i className="fa fa-dot-circle-o text-danger" />
-                        :
-                        <i className="fa fa-dot-circle-o text-success" />
-                  }
-                  {record.status}
-                </a>
-                <div className="dropdown-menu dropdown-menu-right">
-                  <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record._id, leadStatus.open)}><i className="fa fa-dot-circle-o text-info" /> Open</a>
-                  <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record._id, leadStatus.reopened)}><i className="fa fa-dot-circle-o text-info" /> Reopened</a>
-                  <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record._id, leadStatus.on_Hold)}><i className="fa fa-dot-circle-o text-danger" /> On Hold</a>
-                  <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record._id, leadStatus.closed)}><i className="fa fa-dot-circle-o text-success" /> Closed</a>
-                  <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record._id, leadStatus.in_Progress)}><i className="fa fa-dot-circle-o text-success" /> In Progress</a>
-                  <a className="dropdown-item" onClick={() => handleLeadStatusUpdate(record._id, leadStatus.cancelled)}><i className="fa fa-dot-circle-o text-danger" /> Cancelled</a>
-                </div>
-              </>
-              :
-              <div>
-                {
-                  record.status == leadStatus.on_Hold || record.status == leadStatus.cancelled ?
-                    <i className="fa fa-dot-circle-o text-danger" />
-                    :
-                    record.status == leadStatus.open || record.status == leadStatus.reopened ?
-                      <i className="fa fa-dot-circle-o text-info" />
-                      :
-                      <i className="fa fa-dot-circle-o text-success" />
-                }
-                {record.status}
-              </div>
-          }
+          {handleReturndropDown(record)}
         </div>
       ),
     },
@@ -405,7 +547,7 @@ const Leads = () => {
               </ul>
             </div>
             {
-              role != rolesObj.AGENT &&
+              role != rolesObj.SPOKE &&
               <div className="col-auto float-end ml-auto">
                 <a href="#" className="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_Lead"><i className="fa fa-plus" /> Add Lead</a>
               </div>
@@ -494,7 +636,7 @@ const Leads = () => {
               </div>
             </div>
           }
-          <div className="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+          {/* <div className="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
             <div className="form-group form-focus select-focus">
               <select className="select floating">
                 <option> -- Select -- </option>
@@ -504,7 +646,7 @@ const Leads = () => {
               </select>
               <label className="focus-label">Status</label>
             </div>
-          </div>
+          </div> */}
           <div className="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
             <div className="form-group form-focus select-focus">
               <Select
@@ -547,7 +689,6 @@ const Leads = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="table-responsive">
-
               <Table className="table-striped"
                 pagination={{
                   total: displayLeadsArr.length,
@@ -558,7 +699,7 @@ const Leads = () => {
                 columns={columns}
                 // bordered
                 dataSource={displayLeadsArr}
-                rowKey={record => record._id}
+                rowKey={(record, index) => index}
                 onChange={console.log("change")}
               />
             </div>
@@ -619,8 +760,20 @@ const Leads = () => {
                   <div className="col-sm-12">
                     <div className="col-sm-12">
                       <div className="form-group">
-                        <label>Assign Staff {agentsArr.length}</label>
+                        <label>Assign to Team Lead ({agentsArr.length})</label>
                         <Select
+                          ref={teamLeadSelect}
+                          // defaultInputValue={{ value: leadId }}
+                          onChange={handleTeamLeadChange}
+                          options={teamLeadsArr}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-sm-12">
+                      <div className="form-group">
+                        <label>Assign to Spoke ({agentsArr.length})</label>
+                        <Select
+                          ref={agentSelect}
                           onChange={handleAgentChange}
                           options={agentsArr}
                         />
@@ -672,6 +825,42 @@ const Leads = () => {
         </div>
       </div>
       {/* /Delete Lead Modal */}
+
+
+      {/* Update Agent Modal */}
+      <div className="modal custom-modal fade" id="update_agent" role="dialog">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-body">
+              <div className="form-header">
+                <h3>Update Agent</h3>
+                <p>Please Select a Spoke to assign !</p>
+              </div>
+              <div className="col-sm-12">
+                <div className="form-group">
+                  <label>Assign to Spoke ({agentsArr.length})</label>
+                  <Select
+                    ref={agentSelect}
+                    onChange={handleAgentChange}
+                    options={agentsArr}
+                  />
+                </div>
+              </div>
+              <div className="modal-btn delete-action">
+                <div className="row">
+                  <div className="col-6">
+                    <a href="" data-bs-dismiss="modal" onClick={() => handleAssignLeadToAgent()} className="btn btn-primary continue-btn">Assign</a>
+                  </div>
+                  <div className="col-6">
+                    <a href="" data-bs-dismiss="modal" className="btn btn-primary cancel-btn">Cancel</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Update Agent Modal */}
     </div>
   );
 }
