@@ -11,7 +11,7 @@ const ChangePassword = () => {
 
     <div className="page-wrapper">
       <Helmet>
-        <title>Change Password - CRM created by Ebslon Infotech</title>
+        <title>Change Password - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="content container-fluid">

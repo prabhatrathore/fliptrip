@@ -14,7 +14,7 @@ const Search = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Search - CRM created by Ebslon Infotech</title>
+        <title>Search - CRM created by Fliptrip</title>
         <meta name="description" content="Subscriptions" />
       </Helmet>
       {/* Page Content */}

@@ -51,7 +51,7 @@ const Payments = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Payments - CRM created by Ebslon Infotech</title>
+        <title>Payments - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

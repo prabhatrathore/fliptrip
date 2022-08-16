@@ -11,7 +11,7 @@ const Error404 = () => {
   return (
     <>
       <Helmet>
-        <title>Error 404 - CRM created by Ebslon Infotech</title>
+        <title>Error 404 - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="error-box">

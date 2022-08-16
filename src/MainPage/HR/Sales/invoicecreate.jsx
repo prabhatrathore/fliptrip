@@ -17,7 +17,7 @@ const Invoicecreate = () => {
 
     <div className="page-wrapper">
       <Helmet>
-        <title>Create Invoice - CRM created by Ebslon Infotech</title>
+        <title>Create Invoice - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

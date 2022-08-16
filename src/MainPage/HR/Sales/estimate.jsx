@@ -79,7 +79,7 @@ const Estimates = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Estimates - CRM created by Ebslon Infotech</title>
+        <title>Estimates - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

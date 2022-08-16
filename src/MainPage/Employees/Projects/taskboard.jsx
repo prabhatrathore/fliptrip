@@ -9,7 +9,7 @@ const TaskBoard = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Task Board - CRM created by Ebslon Infotech</title>
+        <title>Task Board - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

@@ -93,7 +93,7 @@ const Timesheet = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Timesheet - CRM created by Ebslon Infotech</title>
+        <title>Timesheet - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

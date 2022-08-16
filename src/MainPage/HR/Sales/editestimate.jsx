@@ -15,7 +15,7 @@ const EditEstimate = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Edit Estimate - CRM created by Ebslon Infotech</title>
+        <title>Edit Estimate - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

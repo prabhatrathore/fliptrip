@@ -58,7 +58,7 @@ const Department = () => {
       <Sidebar />
       <div className="page-wrapper">
         <Helmet>
-          <title>Department - CRM created by Ebslon Infotech</title>
+          <title>Department - CRM created by Fliptrip</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

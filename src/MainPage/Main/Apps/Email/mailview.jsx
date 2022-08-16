@@ -12,7 +12,7 @@ const MailView = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Mail View - CRM created by Ebslon Infotech</title>
+        <title>Mail View - CRM created by Fliptrip</title>
         <meta name="description" content="Chat" />
       </Helmet>
       {/* Page Content */}

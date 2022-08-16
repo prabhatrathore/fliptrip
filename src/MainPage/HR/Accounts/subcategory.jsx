@@ -51,7 +51,7 @@ const SubCategory = () => {
             {/* Page Wrapper */}
             <div className="page-wrapper">
                 <Helmet>
-                    <title>Sub Categories - CRM created by Ebslon Infotech</title>
+                    <title>Sub Categories - CRM created by Fliptrip</title>
                     <meta name="description" content="Login page" />
                 </Helmet>
                 {/* Page Content */}

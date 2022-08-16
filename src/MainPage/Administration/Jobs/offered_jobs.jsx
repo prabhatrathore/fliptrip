@@ -75,7 +75,7 @@ const OfferedJobs = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Offered Jobs - CRM created by Ebslon Infotech</title>
+          <title>Offered Jobs - CRM created by Fliptrip</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

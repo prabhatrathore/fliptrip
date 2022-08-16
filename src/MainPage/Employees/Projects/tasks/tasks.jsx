@@ -92,7 +92,7 @@ const Tasks = () => {
   return (
     <div className="page-wrapper" >
       <Helmet>
-        <title>Tasks - CRM created by Ebslon Infotech</title>
+        <title>Tasks - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="chat-main-row">

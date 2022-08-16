@@ -88,7 +88,7 @@ const Invoices = () => {
 
     <div className="page-wrapper">
       <Helmet>
-        <title>Invoices - CRM created by Ebslon Infotech</title>
+        <title>Invoices - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

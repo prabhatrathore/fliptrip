@@ -30,7 +30,7 @@ const AttendanceAdmin = () => {
       <Sidebar />
       <div className="page-wrapper">
         <Helmet>
-          <title>Attendance - CRM created by Ebslon Infotech</title>
+          <title>Attendance - CRM created by Fliptrip</title>
           <meta name="description" content="Login page" />
         </Helmet>
         <div className="content container-fluid">

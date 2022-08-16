@@ -19,7 +19,7 @@ const UserReport = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>User Reports - CRM created by Ebslon Infotech</title>
+          <title>User Reports - CRM created by Fliptrip</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

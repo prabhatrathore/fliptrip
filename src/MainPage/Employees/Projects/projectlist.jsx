@@ -34,7 +34,7 @@ const ProjectList = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Projects - CRM created by Ebslon Infotech</title>
+        <title>Projects - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

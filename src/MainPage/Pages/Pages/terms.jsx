@@ -8,7 +8,7 @@ const TermsCondition = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Terms - CRM created by Ebslon Infotech</title>
+        <title>Terms - CRM created by Fliptrip</title>
         <meta name="description" content="Reactify Blank Page" />
       </Helmet>
       {/* Page Content */}

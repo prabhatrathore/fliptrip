@@ -10,7 +10,7 @@ const Faq = () => {
 	return (
 		<div className="page-wrapper">
 			<Helmet>
-				<title>FAQ - CRM created by Ebslon Infotech</title>
+				<title>FAQ - CRM created by Fliptrip</title>
 				<meta name="description" content="Subscriptions" />
 			</Helmet>
 			{/* Page Content */}

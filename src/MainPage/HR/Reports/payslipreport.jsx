@@ -64,7 +64,7 @@ const PayslipReport = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Payslip Reports - CRM created by Ebslon Infotech</title>
+          <title>Payslip Reports - CRM created by Fliptrip</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

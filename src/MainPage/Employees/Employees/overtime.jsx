@@ -107,7 +107,7 @@ const Overtime = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Overtime - CRM created by Ebslon Infotech</title>
+        <title>Overtime - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

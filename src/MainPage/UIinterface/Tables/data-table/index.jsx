@@ -70,7 +70,7 @@ const DataTable = () => {
 	return (
 		<div className="page-wrapper">
 			<Helmet>
-				<title>Data Tables - CRM created by Ebslon Infotech</title>
+				<title>Data Tables - CRM created by Fliptrip</title>
 				<meta name="description" content="Data Tables" />
 			</Helmet>
 

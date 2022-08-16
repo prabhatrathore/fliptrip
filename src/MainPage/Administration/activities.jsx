@@ -21,7 +21,7 @@ const Activities = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Activities - CRM created by Ebslon Infotech</title>
+        <title>Activities - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

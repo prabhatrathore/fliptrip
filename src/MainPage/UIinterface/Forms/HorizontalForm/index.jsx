@@ -17,7 +17,7 @@ const HorizontalForm = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Horizontal Form - CRM created by Ebslon Infotech</title>
+        <title>Horizontal Form - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="content container-fluid">

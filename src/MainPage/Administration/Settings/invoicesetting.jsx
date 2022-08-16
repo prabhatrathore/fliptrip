@@ -11,7 +11,7 @@ const InvoiceSettings = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Invoice Setting - CRM created by Ebslon Infotech</title>
+        <title>Invoice Setting - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="content container-fluid">

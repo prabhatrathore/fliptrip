@@ -9,7 +9,7 @@ const Inputgrp = () => {
 	return (
 		<div className="page-wrapper">
 			<Helmet>
-				<title>Form Input Groups - CRM created by Ebslon Infotech</title>
+				<title>Form Input Groups - CRM created by Fliptrip</title>
 				<meta name="description" content="Login page" />
 			</Helmet>
 			<div className="content container-fluid">

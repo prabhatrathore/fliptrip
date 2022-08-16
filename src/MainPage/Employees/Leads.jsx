@@ -531,7 +531,7 @@ const Leads = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Leads - CRM created by Ebslon Infotech</title>
+        <title>Leads - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

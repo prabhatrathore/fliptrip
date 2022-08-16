@@ -96,7 +96,7 @@ const PerformanceIndicator = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Performance Indicator - CRM created by Ebslon Infotech</title>
+        <title>Performance Indicator - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

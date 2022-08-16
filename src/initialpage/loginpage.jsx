@@ -60,7 +60,7 @@ const Loginpage = (props) => {
   return (
     <>
       <Helmet>
-        <title>Login - CRM created by Ebslon Infotech</title>
+        <title>Login - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="account-content">

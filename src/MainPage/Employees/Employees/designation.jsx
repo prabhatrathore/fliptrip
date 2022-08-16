@@ -72,7 +72,7 @@ const Designations = () => {
       <Sidebar />
       <div className="page-wrapper">
         <Helmet>
-          <title>Designations - CRM created by Ebslon Infotech</title>
+          <title>Designations - CRM created by Fliptrip</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

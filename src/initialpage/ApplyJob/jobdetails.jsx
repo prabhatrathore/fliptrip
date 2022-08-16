@@ -28,7 +28,7 @@ const Jobdetails = () => {
   return (
     < >
       <Helmet>
-        <title>Jobs - CRM created by Ebslon Infotech</title>
+        <title>Jobs - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Header */}

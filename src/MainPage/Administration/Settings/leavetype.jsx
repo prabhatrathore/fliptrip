@@ -65,7 +65,7 @@ const LeaveType = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Leave Type - CRM created by Ebslon Infotech</title>
+        <title>Leave Type - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

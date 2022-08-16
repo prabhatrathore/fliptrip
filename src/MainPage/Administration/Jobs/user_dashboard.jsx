@@ -76,7 +76,7 @@ const UserDashboard = (props) => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>User Dashboard - CRM created by Ebslon Infotech</title>
+          <title>User Dashboard - CRM created by Fliptrip</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

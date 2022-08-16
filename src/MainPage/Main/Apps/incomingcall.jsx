@@ -21,7 +21,7 @@ const IncomingCall = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Incoming Call - CRM created by Ebslon Infotech</title>
+        <title>Incoming Call - CRM created by Fliptrip</title>
         <meta name="description" content="Incoming Call" />
       </Helmet>
       {/* Incoming Call */}

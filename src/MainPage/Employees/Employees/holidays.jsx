@@ -20,7 +20,7 @@ const Holidays = () => {
       <Sidebar />
       <div className="page-wrapper">
         <Helmet>
-          <title>Holidays - CRM created by Ebslon Infotech</title>
+          <title>Holidays - CRM created by Fliptrip</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

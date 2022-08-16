@@ -22,7 +22,7 @@ const Interviewing = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Interviewing - CRM created by Ebslon Infotech</title>
+          <title>Interviewing - CRM created by Fliptrip</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

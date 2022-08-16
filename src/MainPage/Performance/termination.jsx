@@ -87,7 +87,7 @@ const Termination = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Termination - CRM created by Ebslon Infotech</title>
+        <title>Termination - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

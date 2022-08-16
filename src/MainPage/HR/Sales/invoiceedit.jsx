@@ -16,7 +16,7 @@ const Invoiceedit = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Edit Invoice - CRM created by Ebslon Infotech</title>
+        <title>Edit Invoice - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

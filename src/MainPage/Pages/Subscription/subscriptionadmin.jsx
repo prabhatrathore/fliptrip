@@ -18,7 +18,7 @@ const Subscriptionadmin = () => {
 
     <div className="page-wrapper">
       <Helmet>
-        <title>Subscription - CRM created by Ebslon Infotech</title>
+        <title>Subscription - CRM created by Fliptrip</title>
         <meta name="description" content="Reactify Blank Page" />
       </Helmet>
       {/* Page Content */}

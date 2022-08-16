@@ -101,7 +101,7 @@ const ExpenseReport = () => {
 
     <div className="page-wrapper">
       <Helmet>
-        <title>Expense Report - CRM created by Ebslon Infotech</title>
+        <title>Expense Report - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

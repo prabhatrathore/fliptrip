@@ -41,7 +41,7 @@ const Header = (props) => {
       </a>
       {/* Header Title */}
       <div className="page-title-box">
-        <h3>Ebslon Infotech</h3>
+        <h3>Fliptrip</h3>
       </div>
       {/* /Header Title */}
       <a id="mobile_btn" className="mobile_btn" href="#" onClick={() => onMenuClik()}>

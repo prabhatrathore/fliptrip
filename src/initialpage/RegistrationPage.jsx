@@ -88,7 +88,7 @@ const Registrationpage = (props) => {
 
     <>
       <Helmet>
-        <title>Register - CRM created by Ebslon Infotech</title>
+        <title>Register - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="account-content">

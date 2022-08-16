@@ -10,7 +10,7 @@ const Basicinputs = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Form Basic Input - CRM created by Ebslon Infotech</title>
+        <title>Form Basic Input - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <	div className="content container-fluid">

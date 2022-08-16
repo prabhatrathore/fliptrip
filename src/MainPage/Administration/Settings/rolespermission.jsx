@@ -10,7 +10,7 @@ const RolePermisson = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Roles & Permissions - CRM created by Ebslon Infotech</title>
+        <title>Roles & Permissions - CRM created by Fliptrip</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

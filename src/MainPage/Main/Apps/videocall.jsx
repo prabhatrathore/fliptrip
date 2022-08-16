@@ -21,7 +21,7 @@ const VideoCall = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Video Call - CRM created by Ebslon Infotech</title>
+        <title>Video Call - CRM created by Fliptrip</title>
         <meta name="description" content="Chat" />
       </Helmet>
       {/* Main Row */}
