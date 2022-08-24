@@ -1,4 +1,5 @@
 
+import moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
@@ -189,13 +190,13 @@ const Addemployee = () => {
                   <div className="col-sm-6">
                     <div className="form-group">
                       <label className="col-form-label">Joining Date <span className="text-danger">*</span></label>
-                      <div><input value={doj} onChange={(e) => setDoj(e.target.value)} className="form-control datetimepicker" type="date" /></div>
+                      <div><input onChange={(e) => setDoj(e.target.value)} className="form-control datetimepicker" type="date" /></div>
                     </div>
                   </div>
                   <div className="col-sm-6">
                     <div className="form-group">
                       <label className="col-form-label">Birth Date <span className="text-danger">*</span></label>
-                      <div><input value={dob} onChange={(e) => setDob(e.target.value)} className="form-control datetimepicker" type="date" /></div>
+                      <div><input onChange={(e) => setDob(e.target.value)} className="form-control datetimepicker" type="date" /></div>
                     </div>
                   </div>
                   <div className="col-sm-6">
