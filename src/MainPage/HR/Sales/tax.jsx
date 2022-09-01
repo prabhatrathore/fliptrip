@@ -16,7 +16,7 @@ const Taxes = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Taxes - CRM created by Fliptrip</title>
+        <title>Taxes - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

@@ -19,7 +19,7 @@ const Clients = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Clients - CRM created by Fliptrip</title>
+        <title>Clients - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

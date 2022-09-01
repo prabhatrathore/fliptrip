@@ -10,7 +10,7 @@ const Blank = () => {
 
 		<div className="page-wrapper">
 			<Helmet>
-				<title>Blank - CRM created by Fliptrip</title>
+				<title>Blank - CRM created by Fliptrip Holidays</title>
 				<meta name="description" content="Reactify Blank Page" />
 			</Helmet>
 			{/* Page Content */}

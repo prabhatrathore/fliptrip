@@ -11,7 +11,7 @@ const OTPscreen = () => {
   return (
     <>
       <Helmet>
-        <title>OTP - CRM created by Fliptrip</title>
+        <title>OTP - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="account-content">

@@ -10,7 +10,7 @@ const InboxPage = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Inbox - CRM created by Fliptrip</title>
+        <title>Inbox - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Inbox" />
       </Helmet>
       {/* Page Content */}

@@ -10,7 +10,7 @@ const BudgetRevenus = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Budgets Revenues - CRM created by Fliptrip</title>
+          <title>Budgets Revenues - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

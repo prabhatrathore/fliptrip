@@ -8,7 +8,7 @@ const EstimatesView = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Estimates - CRM created by Fliptrip</title>
+        <title>Estimates - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

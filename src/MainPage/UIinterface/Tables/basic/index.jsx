@@ -9,7 +9,7 @@ const BasicTable = () => {
 	return (
 		<div className="page-wrapper">
 			<Helmet>
-				<title>Basic Tables - CRM created by Fliptrip</title>
+				<title>Basic Tables - CRM created by Fliptrip Holidays</title>
 				<meta name="description" content="Login page" />
 			</Helmet>
 			<div className="content container-fluid">

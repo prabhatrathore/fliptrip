@@ -70,7 +70,7 @@ const ShortlistCandidate = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Shortlist Candidates - CRM created by Fliptrip</title>
+          <title>Shortlist Candidates - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

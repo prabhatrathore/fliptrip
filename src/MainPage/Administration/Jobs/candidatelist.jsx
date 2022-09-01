@@ -80,7 +80,7 @@ const CandidateList = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Candidates List - CRM created by Fliptrip</title>
+          <title>Candidates List - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

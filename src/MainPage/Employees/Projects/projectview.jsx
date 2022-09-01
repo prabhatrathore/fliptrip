@@ -18,7 +18,7 @@ const ProjectView = () => {
   return (
     <div className="page-wrapper" >
       <Helmet>
-        <title>Projects - CRM created by Fliptrip</title>
+        <title>Projects - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

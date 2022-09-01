@@ -34,7 +34,7 @@ const Contacts = () => {
 
       <div className="page-wrapper">
         <Helmet>
-          <title>Contacts - CRM created by Fliptrip</title>
+          <title>Contacts - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Chat" />
         </Helmet>
         {/* Contact Main Row */}

@@ -59,7 +59,7 @@ const AdminDashboard = () => {
       <Sidebar />
       <div className="page-wrapper">
         <Helmet>
-          <title>Dashboard - CRM created by Fliptrip</title>
+          <title>Dashboard - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Dashboard" />
         </Helmet>
         {/* Page Content */}

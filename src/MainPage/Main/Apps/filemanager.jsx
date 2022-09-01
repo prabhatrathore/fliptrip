@@ -24,7 +24,7 @@ const FileManager = () => {
 
       <div className="page-wrapper">
         <Helmet>
-          <title>File Manager - CRM created by Fliptrip</title>
+          <title>File Manager - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Chat" />
         </Helmet>
         {/* Page Content */}

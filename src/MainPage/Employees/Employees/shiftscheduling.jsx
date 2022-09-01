@@ -20,7 +20,7 @@ const ShiftScheduling = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Shift &amp; Schedule - CRM created by Fliptrip</title>
+          <title>Shift &amp; Schedule - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

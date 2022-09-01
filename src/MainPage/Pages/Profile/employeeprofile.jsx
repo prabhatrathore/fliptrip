@@ -37,7 +37,7 @@ const EmployeeProfile = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Employee Profile - CRM created by Fliptrip</title>
+        <title>Employee Profile - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Reactify Blank Page" />
       </Helmet>
       {/* Page Content */}

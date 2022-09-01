@@ -24,7 +24,7 @@ const Compose = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Compose - CRM created by Fliptrip</title>
+        <title>Compose - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Compose" />
       </Helmet>
       {/* Page Content */}

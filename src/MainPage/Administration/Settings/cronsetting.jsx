@@ -12,7 +12,7 @@ const CronSetting = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Cron Setting - CRM created by Fliptrip</title>
+          <title>Cron Setting - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Login page" />
         </Helmet>
         <div className="content container-fluid">

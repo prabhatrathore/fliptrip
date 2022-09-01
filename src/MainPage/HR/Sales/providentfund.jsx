@@ -82,7 +82,7 @@ const ProvidentFund = () => {
 
     <div className="page-wrapper">
       <Helmet>
-        <title>Provident Fund - CRM created by Fliptrip</title>
+        <title>Provident Fund - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

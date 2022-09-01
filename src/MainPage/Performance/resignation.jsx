@@ -74,7 +74,7 @@ const Resignation = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Resignation - CRM created by Fliptrip</title>
+        <title>Resignation - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

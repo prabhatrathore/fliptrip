@@ -51,7 +51,7 @@ const Category = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Categories - CRM created by Fliptrip</title>
+          <title>Categories - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

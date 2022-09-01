@@ -21,7 +21,7 @@ const VoiceCall = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Voice Call - CRM created by Fliptrip</title>
+        <title>Voice Call - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Chat" />
       </Helmet>
       {/* Main Row */}

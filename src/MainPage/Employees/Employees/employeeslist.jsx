@@ -187,7 +187,7 @@ const Employeeslist = () => {
       <Sidebar />
       <div className="page-wrapper">
         <Helmet>
-          <title>Employeeslist - CRM created by Fliptrip</title>
+          <title>Employeeslist - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

@@ -11,7 +11,7 @@ const ForgotPassword = () => {
   return (
     <>
       <Helmet>
-        <title>Forgot Password - CRM created by Fliptrip</title>
+        <title>Forgot Password - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="account-content">

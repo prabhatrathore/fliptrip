@@ -112,7 +112,7 @@ const Assets = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Assets - CRM created by Fliptrip</title>
+        <title>Assets - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

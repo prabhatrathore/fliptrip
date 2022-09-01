@@ -9,7 +9,7 @@ const NotificationsSettings = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Notifications Settings - CRM created by Fliptrip</title>
+        <title>Notifications Settings - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

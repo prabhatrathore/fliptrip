@@ -70,7 +70,7 @@ const ExperienceLevel = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Experience Level - CRM created by Fliptrip</title>
+          <title>Experience Level - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

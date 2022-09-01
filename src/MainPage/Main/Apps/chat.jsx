@@ -24,7 +24,7 @@ const Chat = () => {
 
     <div className="page-wrapper" >
       <Helmet>
-        <title>Chat - CRM created by Fliptrip</title>
+        <title>Chat - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Chat" />
       </Helmet>
       {/* Chat Main Row */}

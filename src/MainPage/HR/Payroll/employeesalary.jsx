@@ -104,7 +104,7 @@ const EmployeeSalary = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Salary - CRM created by Fliptrip</title>
+        <title>Salary - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

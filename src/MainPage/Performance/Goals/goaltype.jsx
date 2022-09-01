@@ -74,7 +74,7 @@ const GoalType = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Goal - CRM created by Fliptrip</title>
+        <title>Goal - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

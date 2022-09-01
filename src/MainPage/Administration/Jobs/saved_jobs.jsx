@@ -103,7 +103,7 @@ const Savedjobs = () => {
       {/* Page Wrapper */}
       <div className="page-wrapper">
         <Helmet>
-          <title>Saved Jobs - CRM created by Fliptrip</title>
+          <title>Saved Jobs - CRM created by Fliptrip Holidays</title>
           <meta name="description" content="Login page" />
         </Helmet>
         {/* Page Content */}

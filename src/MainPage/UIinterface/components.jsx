@@ -35,7 +35,7 @@ const UIComponents = () => {
   return (
     <div className='component'>
       <Helmet>
-        <title>Components - CRM created by Fliptrip</title>
+        <title>Components - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className={`main-wrapper ${menu ? 'slide-nav' : ''}`}>

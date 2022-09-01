@@ -16,7 +16,7 @@ const PayrollItems = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Payroll Items - CRM created by Fliptrip</title>
+        <title>Payroll Items - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}

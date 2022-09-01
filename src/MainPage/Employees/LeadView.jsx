@@ -18,7 +18,7 @@ const LeadView = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Leads - CRM created by Fliptrip</title>
+        <title>Leads - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="chat-main-row">

@@ -20,7 +20,7 @@ const OutgoingCall = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Outgoing Call - CRM created by Fliptrip</title>
+        <title>Outgoing Call - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Outgoing Call" />
       </Helmet>
       {/* Outgoing Call */}

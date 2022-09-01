@@ -519,7 +519,7 @@ const Leads = () => {
         <div className="dropdown dropdown-action text-end">
           <a href="#" className="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i className="material-icons">more_vert</i></a>
           <div className="dropdown-menu dropdown-menu-right">
-            {/* <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_Lead"><i className="fa fa-pencil m-r-5" /> Edit</a> */}
+            <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_Lead"><i className="fa fa-pencil m-r-5" /> Edit</a>
             <a className="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_Lead"><i className="fa fa-trash-o m-r-5" /> Delete</a>
           </div>
         </div>
@@ -531,7 +531,7 @@ const Leads = () => {
   return (
     <div className="page-wrapper">
       <Helmet>
-        <title>Leads - CRM created by Fliptrip</title>
+        <title>Leads - CRM created by Fliptrip Holidays</title>
         <meta name="description" content="Login page" />
       </Helmet>
       {/* Page Content */}
@@ -758,17 +758,22 @@ const Leads = () => {
                 </div>
                 <div className="row">
                   <div className="col-sm-12">
-                    <div className="col-sm-12">
-                      <div className="form-group">
-                        <label>Assign to Team Lead ({agentsArr.length})</label>
-                        <Select
-                          ref={teamLeadSelect}
-                          // defaultInputValue={{ value: leadId }}
-                          onChange={handleTeamLeadChange}
-                          options={teamLeadsArr}
-                        />
+                    {
+                      role != rolesObj.TEAMLEAD &&
+
+                      <div className="col-sm-12">
+                        <div className="form-group">
+                          <label>Assign to Team Lead ({agentsArr.length})</label>
+                          <Select
+                            ref={teamLeadSelect}
+                            // defaultInputValue={{ value: leadId }}
+                            onChange={handleTeamLeadChange}
+                            options={teamLeadsArr}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    }
+
                     <div className="col-sm-12">
                       <div className="form-group">
                         <label>Assign to Spoke ({agentsArr.length})</label>
